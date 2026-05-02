@@ -1,7 +1,7 @@
 [project]
 site_name = "All Self Hosted"
 site_url = "https://allselfhosted.blog"
-site_description = "A blog about self-hosting all the things"
+site_description = "A personal blog documenting the journey of self-hosting services — Docker, Podman, Caddy, Plex, Immich, Ollama, and more — on home servers."
 site_author = "Adam Shelton"
 copyright = "Copyright &copy; 2026 Adam Shelton"
 extra_css = ["stylesheets/extra.css"]

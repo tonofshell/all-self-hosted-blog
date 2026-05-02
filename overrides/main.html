@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block extrahead %}
+  {%- set page_title = page.meta.title if page.meta and page.meta.title else (page.title | striptags if page.title else config.site_name) %}
+  {%- set page_desc = page.meta.description if page.meta and page.meta.description else config.site_description %}
+  {%- set is_article = page.meta and page.meta.date %}
+  <!-- Open Graph -->
+  <meta property="og:type" content="{{ 'article' if is_article else 'website' }}">
+  <meta property="og:site_name" content="{{ config.site_name }}">
+  <meta property="og:title" content="{{ page_title }}">
+  {% if page_desc %}<meta property="og:description" content="{{ page_desc }}">{% endif %}
+  {% if page.canonical_url %}<meta property="og:url" content="{{ page.canonical_url }}">{% endif %}
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{{ page_title }}">
+  {% if page_desc %}<meta name="twitter:description" content="{{ page_desc }}">{% endif %}
+  <!-- JSON-LD structured data -->
+  {% if is_article %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": {{ page_title | tojson }},
+    "description": {{ page_desc | tojson if page_desc else '""' }},
+    "url": {{ page.canonical_url | tojson if page.canonical_url else '""' }},
+    "datePublished": {{ page.meta.date | string | tojson }},
+    "author": {
+      "@type": "Person",
+      "name": {{ (page.meta.author if page.meta and page.meta.author else config.site_author) | tojson }}
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": {{ config.site_author | tojson }},
+      "url": {{ config.site_url | tojson }}
+    }
+  }
+  </script>
+  {% else %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": {{ config.site_name | tojson }},
+    "description": {{ config.site_description | tojson if config.site_description else '""' }},
+    "url": {{ config.site_url | tojson }}
+  }
+  </script>
+  {% endif %}
+{% endblock %}
