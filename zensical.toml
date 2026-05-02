@@ -4,6 +4,7 @@ site_url = "https://allselfhosted.blog"
 site_description = "A blog about self-hosting all the things"
 site_author = "Adam Shelton"
 copyright = "Copyright &copy; 2026 Adam Shelton"
+extra_css = ["stylesheets/extra.css"]
 
 [project.theme]
 language = "en"
@@ -25,11 +26,15 @@ features = [
 
 [[project.theme.palette]]
 scheme = "default"
+primary = "custom"
+accent = "custom"
 toggle.icon = "lucide/sun"
 toggle.name = "Switch to dark mode"
 
 [[project.theme.palette]]
 scheme = "slate"
+primary = "custom"
+accent = "custom"
 toggle.icon = "lucide/moon"
 toggle.name = "Switch to light mode"
 

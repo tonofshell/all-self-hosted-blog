@@ -22,6 +22,33 @@ Your job is to foremost to lend a helping hand maintaining the blog. You should 
 - **Comments:** giscus — configured in `overrides/partials/comments.html`; the `data-repo-id` and `data-category-id` placeholders must be replaced with values from [giscus.app](https://giscus.app) after enabling GitHub Discussions on the repo
 - **Deployment:** GitHub Actions via `cssnr/zensical-action@v1` → GitHub Pages → `allselfhosted.blog`; trigger: push to `main`
 
+## Color Palette — Rust & Coast
+
+Custom colors defined in `docs/stylesheets/extra.css`. The modern Zensical theme header does not use the primary color variable by default, so `.md-header` is targeted directly.
+
+### Light mode (`[data-md-color-scheme="default"]`)
+| Role | Hex | WCAG contrast on white |
+|------|-----|------------------------|
+| Primary (links, active nav) | `#C0390A` | 7.9:1 ✓✓ |
+| Primary light variant | `#E64A19` | — |
+| Primary dark variant | `#8D1A00` | — |
+| Accent (buttons, highlights) | `#4F3B8C` | 7.5:1 ✓✓ |
+| Header background | `#C0390A` (direct `.md-header` override) | — |
+
+### Dark mode (`[data-md-color-scheme="slate"]`)
+| Role | Hex |
+|------|-----|
+| Primary (links, active nav) | `#F05A20` |
+| Primary light variant | `#FF7043` |
+| Primary dark variant | `#C0390A` |
+| Accent (buttons, highlights) | `#1CB89E` |
+| Header background | `#1C0902` (direct `.md-header` override) |
+
+### Notes
+- `--md-primary-fg-color` drives text links and interactive elements; `--md-accent-fg-color` drives buttons and hover highlights
+- The modern Zensical theme uses `--md-default-bg-color--light` for the header background, not `--md-primary-fg-color` — do not remove the direct `.md-header` CSS rules or the header will revert to the default neutral color
+- To change the palette in future, update both `[data-md-color-scheme]` blocks in `extra.css` and the direct `.md-header` overrides below them
+
 ## Proofreading Guidelines
 - **ALWAYS** check with the author before making changes (even minimal ones).
 - Try to make edits in way that respect the tone and style of the author as reflected in their other articles.

@@ -1,0 +1,32 @@
+/* Rust & Coast — links, buttons, and interactive accents */
+
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color:             #C0390A;
+  --md-primary-fg-color--light:      #E64A19;
+  --md-primary-fg-color--dark:       #8D1A00;
+  --md-primary-bg-color:             #ffffff;
+  --md-primary-bg-color--light:      rgba(255, 255, 255, 0.7);
+  --md-accent-fg-color:              #4F3B8C;
+  --md-accent-fg-color--transparent: #4F3B8C1A;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color:             #F05A20;
+  --md-primary-fg-color--light:      #FF7043;
+  --md-primary-fg-color--dark:       #C0390A;
+  --md-accent-fg-color:              #1CB89E;
+  --md-accent-fg-color--transparent: #1CB89E1A;
+}
+
+/*
+  The modern Zensical theme uses --md-default-bg-color--light for the header
+  background rather than --md-primary-fg-color, so we target .md-header directly.
+*/
+[data-md-color-scheme="default"] .md-header {
+  background-color: #C0390A;
+  color: #ffffff;
+}
+
+[data-md-color-scheme="slate"] .md-header {
+  background-color: #1C0902;
+}
