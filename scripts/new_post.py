@@ -38,7 +38,9 @@ def build_front_matter(title: str, description: str, tags: list[str]) -> str:
         lines.append(f"description: {description}")
     lines.append(f"date: {date.today()}")
     if tags:
-        lines.append(f"tags: [{', '.join(tags)}]")
+        lines.append("tags:")
+        for tag in tags:
+            lines.append(f"  - {tag}")
     lines += ["comments: true", "---", ""]
     return "\n".join(lines)
 
@@ -64,8 +66,10 @@ def main() -> None:
     raw_tags = prompt("Tags (comma-separated)")
 
     slug = slugify(title)
-    filename = f"{date.today()}-{slug}.md"
-    post_path = BLOG_DIR / filename
+    today = date.today()
+    filename = f"{today.strftime('%m-%d')}-{slug}.md"
+    year_dir = BLOG_DIR / str(today.year)
+    post_path = year_dir / filename
 
     if post_path.exists():
         print(f"\nFile already exists: {post_path}")
@@ -74,7 +78,7 @@ def main() -> None:
     tags = parse_tags(raw_tags)
     front_matter = build_front_matter(title, description, tags)
 
-    BLOG_DIR.mkdir(parents=True, exist_ok=True)
+    year_dir.mkdir(parents=True, exist_ok=True)
     post_path.write_text(front_matter, encoding="utf-8")
 
     print(f"\nCreated: {post_path.relative_to(Path(__file__).parent.parent)}")

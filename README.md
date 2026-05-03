@@ -27,14 +27,17 @@ uv run zensical serve     # → http://localhost:8000
 /new-post
 ```
 
-Posts live in `docs/blog/` as `YYYY-MM-DD-slug.md` files. Supported front matter:
+Posts live in `docs/blog/YYYY/` as `MM-DD-slug.md` files. The year subdirectory is what creates the "Blog → 2026 → Post Title" year-based nav grouping. Supported front matter:
 
 ```yaml
 ---
 title: Post Title
 description: One-sentence summary for SEO and Open Graph.
 date: YYYY-MM-DD
-tags: [docker, homelab, networking]
+tags:
+  - docker
+  - homelab
+  - networking
 comments: true
 ---
 ```

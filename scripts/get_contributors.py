@@ -92,13 +92,14 @@ def main() -> None:
         print("GITHUB_TOKEN not set — skipping contributor injection", file=sys.stderr)
         return
 
-    posts = sorted(BLOG_DIR.glob("*.md"))
+    posts = sorted(BLOG_DIR.rglob("*.md"))
     if not posts:
         print("No posts found in docs/blog/", file=sys.stderr)
         return
 
+    repo_root = Path(__file__).parent.parent
     for post in posts:
-        rel = f"docs/blog/{post.name}"
+        rel = str(post.relative_to(repo_root))
         print(f"Processing {rel}...")
         logins = get_contributors(rel, token)
         if logins:

@@ -17,12 +17,12 @@ Your job is to foremost to lend a helping hand maintaining the blog. You should 
 - **Dependency management:** `uv` — run `uv sync` to install deps; lockfile is `uv.lock`
 - **Dev server:** `uv run zensical serve` → http://localhost:8000
 - **Build:** `uv run zensical build` → outputs to `site/` (gitignored)
-- **Blog posts:** Markdown files in `docs/blog/` named `YYYY-MM-DD-slug.md` (flat — no year subdirectory); use `/new-post` to scaffold a new post
+- **Blog posts:** Markdown files in `docs/blog/YYYY/MM-DD-slug.md` (year subdirectory — this is what creates the "Blog → 2026 → Post Title" year-based nav grouping); use `/new-post` to scaffold a new post
 - **Front matter fields:**
   - `title` (required)
   - `date: YYYY-MM-DD` (required)
   - `description` (recommended — used in Open Graph/SEO)
-  - `tags: [tag1, tag2]` (optional — blog plugin auto-creates tag index pages at `/blog/tag/<slug>/`)
+  - `tags:` block list (optional — use YAML block syntax, **not** inline `[tag1, tag2]`; Zensical's link scanner misreads inline array brackets as markdown references and emits a false warning; blog plugin auto-creates tag index pages at `/blog/tag/<slug>/`)
   - `comments: true` (optional — enables giscus comments)
 - **Diagrams:** Mermaid fences (` ```mermaid `) are natively supported via the superfences extension — no extra setup
 - **Comments:** giscus — configured in `overrides/partials/comments.html`; the `data-repo-id` and `data-category-id` placeholders must be replaced with values from [giscus.app](https://giscus.app) after enabling GitHub Discussions on the repo
