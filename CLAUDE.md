@@ -17,7 +17,7 @@ Your job is to foremost to lend a helping hand maintaining the blog. You should 
 - **Dependency management:** `uv` — run `uv sync` to install deps; lockfile is `uv.lock`
 - **Dev server:** `uv run zensical serve` → http://localhost:8000
 - **Build:** `uv run zensical build` → outputs to `site/` (gitignored)
-- **Blog posts:** Markdown files in `docs/blog/` named `YYYY-MM-DD-slug.md` (flat — no year subdirectory); use `/new-post` to scaffold a new post
+- **Blog posts:** Markdown files in `docs/blog/YYYY/MM-DD-slug.md` (year subdirectory — this is what creates the "Blog → 2026 → Post Title" year-based nav grouping); use `/new-post` to scaffold a new post
 - **Front matter fields:**
   - `title` (required)
   - `date: YYYY-MM-DD` (required)
