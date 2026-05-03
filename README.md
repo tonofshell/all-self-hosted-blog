@@ -10,6 +10,8 @@ Live at [allselfhosted.blog](https://allselfhosted.blog)
 - **Hosting:** GitHub Pages
 - **Deployment:** GitHub Actions on push to `main`
 - **Comments:** [giscus](https://giscus.app) (GitHub Discussions)
+- **Color scheme:** Auto light/dark based on system preference; manual toggle available
+- **Contributors:** GitHub avatar circles on each post, populated from git history via `scripts/get_contributors.py` in CI
 
 ## Local Development
 
@@ -25,4 +27,14 @@ uv run zensical serve     # → http://localhost:8000
 /new-post
 ```
 
-Posts live in `docs/blog/posts/` as Markdown files with `date: YYYY-MM-DD` in the front matter.
+Posts live in `docs/blog/` as `YYYY-MM-DD-slug.md` files. Supported front matter:
+
+```yaml
+---
+title: Post Title
+description: One-sentence summary for SEO and Open Graph.
+date: YYYY-MM-DD
+tags: [docker, homelab, networking]
+comments: true
+---
+```
