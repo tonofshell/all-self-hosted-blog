@@ -14,8 +14,29 @@ jobs:
       id-token: write
     environment:
       name: github-pages
-      url: ${{ steps.zensical.outputs.page_url }}
+      url: ${{ steps.deploy.outputs.page_url }}
     steps:
-      - name: Zensical Action
-        id: zensical
-        uses: cssnr/zensical-action@v1
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: astral-sh/setup-uv@v5
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Inject contributors
+        run: uv run python scripts/get_contributors.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build site
+        run: uv run zensical build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/
+
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4
