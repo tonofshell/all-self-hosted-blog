@@ -22,7 +22,7 @@ Your job is to foremost to lend a helping hand maintaining the blog. You should 
   - `title` (required)
   - `date: YYYY-MM-DD` (required)
   - `description` (recommended — used in Open Graph/SEO)
-  - `tags: [tag1, tag2]` (optional — blog plugin auto-creates tag index pages at `/blog/tag/<slug>/`)
+  - `tags:` block list (optional — use YAML block syntax, **not** inline `[tag1, tag2]`; Zensical's link scanner misreads inline array brackets as markdown references and emits a false warning; blog plugin auto-creates tag index pages at `/blog/tag/<slug>/`)
   - `comments: true` (optional — enables giscus comments)
 - **Diagrams:** Mermaid fences (` ```mermaid `) are natively supported via the superfences extension — no extra setup
 - **Comments:** giscus — configured in `overrides/partials/comments.html`; the `data-repo-id` and `data-category-id` placeholders must be replaced with values from [giscus.app](https://giscus.app) after enabling GitHub Discussions on the repo

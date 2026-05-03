@@ -81,7 +81,7 @@ class TestBuildFrontMatter:
 
     def test_with_tags(self):
         fm = new_post.build_front_matter("Post", "", ["docker", "linux"])
-        assert "tags: [docker, linux]" in fm
+        assert "tags:\n  - docker\n  - linux" in fm
 
     def test_without_tags(self):
         fm = new_post.build_front_matter("Post", "", [])

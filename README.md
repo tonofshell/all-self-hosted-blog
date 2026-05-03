@@ -34,7 +34,10 @@ Posts live in `docs/blog/` as `YYYY-MM-DD-slug.md` files. Supported front matter
 title: Post Title
 description: One-sentence summary for SEO and Open Graph.
 date: YYYY-MM-DD
-tags: [docker, homelab, networking]
+tags:
+  - docker
+  - homelab
+  - networking
 comments: true
 ---
 ```

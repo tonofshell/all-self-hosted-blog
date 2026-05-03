@@ -38,7 +38,9 @@ def build_front_matter(title: str, description: str, tags: list[str]) -> str:
         lines.append(f"description: {description}")
     lines.append(f"date: {date.today()}")
     if tags:
-        lines.append(f"tags: [{', '.join(tags)}]")
+        lines.append("tags:")
+        for tag in tags:
+            lines.append(f"  - {tag}")
     lines += ["comments: true", "---", ""]
     return "\n".join(lines)
 
